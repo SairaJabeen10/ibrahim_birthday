@@ -417,7 +417,7 @@
   </svg>
 </button>
 <!-- Add a file named song.mp3 next to this html file to enable music -->
-<audio id="song" src="song.mp3" loop></audio>
+<audio id="song" src="./song.mp3" preload="auto" loop></audio>
 
 <script>
   // ---- petals ----
@@ -500,7 +500,10 @@
   let playing = false;
   btn.addEventListener('click', ()=>{
     if(!playing){
-      song.play().catch(()=>{});
+      song.play().catch(error => {
+    console.error("SONG ERROR:", error);
+    alert("Song load nahi ho raha: " + error.message);
+});
       btn.classList.add('playing');
       btn.setAttribute('aria-label','Pause birthday song');
     } else {
